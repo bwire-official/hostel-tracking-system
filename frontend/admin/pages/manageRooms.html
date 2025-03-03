@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdminPanel || Manage Rooms</title>
+    <link rel="stylesheet" href="../css/manageRooms.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <aside class="sidebar">
+        <div class="d-flex justify-content-between p-4">
+            <div class="sidebar-logo">
+                <a href="#">AdminPanel</a>
+            </div>
+            <button class="toggle-btn border-0" type="button">
+                <i id="iconic" class="bx bx-chevrons-right"></i>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                    <i class="bx bxs-dashboard"></i> <span class="active">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/admin/markup/manageStudents.html" class="sidebar-link">
+                    <i class="bx bxs-group"></i> <span>Manage Students</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/admin/markup/manageRooms.html" class="sidebar-link">
+                    <i class="bx bxs-door-open"></i> <span>Manage Rooms</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/admin/markup/runScan.html" class="sidebar-link">
+                    <i class="bx bx-qr-scan"></i> <span>Run Scans</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                    <i class="bx bx-clipboard"></i> <span>Track Reports</span>
+                </a>
+            </li>
+    
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse" aria-expanded="false">
+                    <i class="bx bxs-bullseye"></i> <span> View Settings</span>
+                </a>
+                <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="#" id="darkModeToggle" class="sidebar-link">Dark mode</a> <!-- Added ID here -->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#" class="sidebar-link">
+                <i class="bx bxs-log-out"></i> <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+      <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+          <div class="navbar-collapse navbar">
+            <ul class="navbar-navv">
+              <li class="nav-item dropdown">
+                <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                  <img
+                    src="/admin/img/profile.jpeg"
+                    class="avatar img-fluid rounded"
+                    alt=""
+                  />
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a href="#" class="dropdown-item">Profile</a>
+                  <a href="#" class="dropdown-item">Settings</a>
+                  <a href="#" class="dropdown-item">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main id="content">
+            <div class="mt-4">
+                <h4>Manage Rooms</h4>
+            </div>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" id="searchRoomNumber" class="form-control" placeholder="Enter Room Number">
+                    </div>
+                    <div class="col-md-3">
+                        <select id="searchFloor" class="form-select">
+                            <option value="Ground Floor">Ground Floor</option>
+                            <option value="First Floor">First Floor</option>
+                            <option value="Second Floor">Second Floor</option>
+                            <option value="Second Floor">Last Floor</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="searchBtn" class="btn btn-primary w-100">Search</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="clearSearchBtn" class="btn btn-secondary w-100">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <div id="roomInfo" class="mt-4 d-none">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Room <span id="roomNumber"></span></h5>
+                        <p class="card-text">
+                            <strong>Floor:</strong> <span id="roomFloor"></span>
+                        </p>
+                        <p class="card-text">
+                            <strong>Occupants:</strong> <span id="roomOccupants"></span>/3
+                        </p>
+                        <p class="card-text">
+                            <strong>Status:</strong> <span id="roomStatus"></span>
+                        </p>
+            
+                        <button class="btn btn-danger" id="optionStudentBtn">More Details</button>
+                        <button class="btn btn-warning" id="editRoomBtn">Edit Info</button>
+                        <button class="btn btn-danger" id="removeRoomBtn">Remove Room</button>
+                    </div>
+                </div>
+            </div>
+        <!--Floating room btn modal--> 
+        <button class="btn btn-success position-fixed bottom-0 end-0 m-4" data-bs-toggle="modal" data-bs-target="#assignRoomModal">
+            + Assign a Room
+        </button>
+
+                <!---For the Assign Room modal-->
+
+                <!-- Assign Room Modal -->
+                <div class="modal fade" id="assignRoomModal" tabindex="-1" aria-labelledby="assignRoomModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="assignRoomModalLabel">Assign Room</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="assignRoomForm">
+                                    <div class="mb-3">
+                                        <label for="studentIdInput" class="form-label">Student ID</label>
+                                        <input type="text" class="form-control" id="studentIdInput" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="roomNumber" class="form-label">Room Number</label>
+                                        <input type="text" id="roomNumb" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="roomFloor" class="form-label">Floor</label>
+                                        <select id="searchFloor" class="form-select">
+                                            <option value="Ground Floor">Ground Floor</option>
+                                            <option value="First Floor">First Floor</option>
+                                            <option value="Second Floor">Second Floor</option>
+                                            <option value="Second Floor">Last Floor</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="assignmentDate" class="form-label">Assignment Date</label>
+                                        <input type="date" class="form-control" id="assignmentDate" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="notes" class="form-label">Notes (Optional)</label>
+                                        <textarea class="form-control" id="notes"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Assign Room</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        </main>
+      </div>
+    </div>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/admin/script/manageRooms.js"></script>
+  </body>
+</html>

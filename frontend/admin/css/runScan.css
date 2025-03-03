@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+
+.wrapper a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+
+body{
+    font-family: 'Lato', sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
+
+
+.wrapper{
+    display: flex;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    transition: all 0.25s ease-in-out;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+#sidebar{
+    width: 90px;
+    min-width: 90px;
+    background-color: #0b0f19;
+    transition: all 0.25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#sidebar .active{
+    color: #3b7ddd;
+}
+
+
+.sidebar-nav {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+
+#sidebar.expand{
+    width: 260px;
+    min-width: 260px;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span{
+    display: none;
+    /* outline: 2px solid red; */
+}
+
+.toggle-btn{
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+    border-radius: 25%;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #323c55;
+    /* outline: 2px solid red; */
+}
+
+.toggle-btn i{
+    color: #ffffff;
+}
+
+#sidebar.expand.sidebar-logo,
+#sidebar.expand a .sidebar-link span{
+    animation: fadeIn .25s ease-out;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+.sidebar-logo a{
+    color: #ffffff;
+    font-size: 1.32rem;
+    font-weight: 600;
+
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: #e9ecef;
+    position: relative;
+    display: block;
+    font-size: 0.875rem;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+
+.sidebar-link i,
+.dropdown-item i{
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover{
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+.avatar {
+    height: 20px;
+    width: 40px;
+}
+
+.navbar-expand .navbar-nav {
+    margin-left: auto;
+}

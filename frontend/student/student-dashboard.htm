@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Panel || Home</title>
+    
+    <link rel="stylesheet" href="/students/style/studentDashboard.css">
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex justify-content-between p-4">
+                <div class="sidebar-logo">
+                    <a href="#">StudentPanel</a>
+                </div>
+                <button class="toggle-btn border-0" type="button">
+                    <i id="iconic" class="bx bx-chevrons-right"></i>
+                </button>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bx bxs-dashboard"></i> <span class="active">Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" id="seeProf" class="sidebar-link">
+                        <i class='bx bxs-user-circle'></i><span>See my profile</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" id="planDay">
+                        <i class='bx bxs-edit-alt'></i><span>Plan my day</span>
+                    </a>
+                </li>
+                <li class="sidebar-item" id="logComp">
+                    <a href="#" class="sidebar-link">
+                        <i class="bx bx-clipboard"></i> <span>Lodge a Complaint</span>
+                    </a>
+                </li>
+        
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="bx bxs-bullseye"></i> <span> View Settings</span>
+                    </a>
+                    <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" id="darkModeToggle" class="sidebar-link">Dark mode</a> <!-- Added ID here -->
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">
+                    <i class="bx bxs-log-out"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="/admin/img/profile.jpeg" class="avatar img-fluid rounded" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Settings</a>
+                                <a href="#" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        
+
+        <main class="col-md-10 mg-ms-auto col-lg-10 px-md-4 content">
+            <h4>Hello,<span id="studentNameIdentifier"></span></h4>
+            <p>Nice to have you back!</p>
+    
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header text-white" style="background-color: #0b0f19;">Student QR Code</div>
+                        <div class="card-body text-center">
+                                <img id="qr-code-image" src="" alt="QR Code"  class="w-600">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-white" style="background-color: #0b0f19;">Your Check-in Stats</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">This Month</h5>
+                            <p><strong>Check-ins:</strong> <span id="checkInCount">0</span></p>
+                            <p><strong>Check-outs:</strong> <span id="checkOutCount">0</span></p>
+                            <div class="progress">
+                                <div id="checkInProgress" class="progress-bar bg-success" role="progressbar" style="width: 0%;">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-header text-white" style="background-color: #0b0f19;">Daily Quotes</div>
+                <div class="card-body text-center">
+                    <blockquote class="blockquote mb-0">
+                        <p id="dailyChallenge">Loading...</p>
+                        <footer class="blockquote-footer">Quote of the day</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- New Row: Two Large Equal Width Cards -->
+    <div class="row mb-4">
+                <div class="col-md-6">
+         <div class="card h-100 p-3 shadow">
+                    <h5 class="card-title"> Your Recent Logs</h5>
+                    <div id="logCard" class="overflow-auto" style="max-height: 400px;">
+                        <ul id="logs-list"></ul> <!--added a log list-->
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+   
+    <!-- New Row: Unequally Wide Cards -->
+    <div class="row ms-12">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-white" style="background-color: #0b0f19;">Notifications</div>
+                <div class="card-body">
+                    <ul>
+                        <li><span id="notif1">No new notifications</span></li>
+                        <li><span id="notif2"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card p-3 shadow">
+                        <h5>Activity</h5>
+                        <canvas id="learningChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    </main>
+        </div>
+    </div>
+
+    <!--See my profile modal-->
+
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="profileModalLabel">My Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="profile.jpg" alt="Profile Picture" class="rounded-circle mb-3" width="100">
+                    <p><strong>Username:</strong> <span id="username"></span></p>
+                    <p><strong>Student ID:</strong> <span id="studentId"></span></p>
+                    <p><strong>Room Number:</strong> <span id="roomNumber"></span></p>
+                    <p><strong>Floor:</strong> <span id="floorNumber"></span></p>
+                    <p><strong>Contact No.:</strong> +234<span id="contactNo"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!---Lodge complaint modal-->
+
+    <div class="modal fade" id="complaintModal" tabindex="-1" aria-labelledby="complaintModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="complaintModalLabel">Lodge a Complaint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="complaintForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="complaintName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Student ID</label>
+                            <input type="text" class="form-control" id="complaintId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Room Number</label>
+                            <input type="text" class="form-control" id="complaintRoom" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Floor</label>
+                            <select id="searchFloorNumber" class="form-select">
+                                <option value="Ground Floor">Ground Floor</option>
+                                <option value="First Floor">First Floor</option>
+                                <option value="Second Floor">Second Floor</option>
+                                <option value="Second Floor">Last Floor</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Complaint</label>
+                            <textarea class="form-control" id="complaintText" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class='bx bx-paper-plane' id="planeIcon"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+    <script src="./script/student-dashboard.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <!-- Link to your CSS file (if any)-->
+  <link rel="stylesheet" href="css/student-dashboard.css">
+</head>
+<body>
+  <h1>Student Dashboard</h1>
+  <div>
+    <h2>Your QR Code</h2>
+    <img id="qr-code-image" src="" alt="QR Code">
+  </div>
+  <div id="logs-section">
+    <h2>Your Check-in/Check-out History</h2>
+    <ul id="logs-list"></ul>
+  </div>
+
+  <!-- Link to your JavaScript file -->
+  <script src="script/student-dashboard.js"></script>
+</body> 

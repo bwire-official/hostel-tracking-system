@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- Add the HTML5 QR Code Scanner library -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <!-- Link to your CSS file (if any) -->
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <div id="qr-reader" style="width: 500px"></div>
+  <p id="scan-result"></p>
+
+  <!-- Manual Entry for Testing -->
+  <div>
+    <label for="manual-student-id">Enter Student ID:</label>
+    <input type="text" id="manual-student-id" placeholder="e.g., STUDENT_12345">
+    <button onclick="manualScan()">Submit</button>
+  </div>
+
+  <!-- Link to your JavaScript file -->
+  <script src="script/admin-dashboard.js"></script>
+</body>
+</html>
