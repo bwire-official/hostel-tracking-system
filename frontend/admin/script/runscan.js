@@ -3,13 +3,109 @@ const hamburger = document.querySelector(".toggle-btn");
 
 const toggler = document.querySelector("#iconic");
 
+
 hamburger.addEventListener("click", function(){
     document.querySelector("#sidebar").classList.toggle("expand")
     toggler.classList.toggle("bx-chevrons-right")
     toggler.classList.toggle("bx-chevrons-left")
-})
+});
+//-start --2
+
+const html5QrCode = new Html5Qrcode('qr-reader');
+const token = localStorage.getItem("token"); // Retrieve token from storage
+
+if (!token) {
+  alert("No token found. Please log in again.");
+}
+
+// Function to handle successful scans
+function onScanSuccess(studentId) {
+  // Check if this is a check-out
+  const reason = prompt('Enter reason for check-out (if applicable):');
+
+  // Send studentId and reason to the backend
+  
+  fetch('http://localhost:5000/api/scan', {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` 
+    },
+    body: JSON.stringify({ studentId, reason }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      document.getElementById('scan-result').innerText = `Scanned: ${data.message}`;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      document.getElementById('scan-result').innerText = 'Error: Failed to log scan.';
+    });
+}
+//stop-2
 
 //Dark mode toggle
+
+
+// Start the QR code scanner
+html5QrCode.start(
+    { facingMode: 'environment' }, // Use the rear camera
+    { fps: 10, qrbox: 250 },
+    onScanSuccess
+  ).catch((error) => {
+    console.error('Error starting QR scanner:', error);
+    document.getElementById('scan-result').innerText = 'Error: Failed to start QR scanner.';
+  });
+  
+
+
+// Manual Scan Functionality
+function manualScan() {
+    const studentId = document.getElementById('manual-student-id').value;
+    if (!studentId) {
+      alert('Please enter a student ID.');
+      return;
+    }
+  
+    const token = localStorage.getItem("token"); // Retrieve token again to be sure
+  
+    if (!token) {
+      alert("No token found. Please log in again.");
+      return;
+    }
+  
+    // Check if this is a check-out
+    const reason = prompt('Enter reason for check-out (if applicable):');
+  
+    // Send studentId and reason to the backend
+    fetch('http://localhost:5000/api/scan', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Include the token
+      },
+      body: JSON.stringify({ studentId, reason }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        document.getElementById('scan-result').innerText = `Scanned: ${data.message}`;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        document.getElementById('scan-result').innerText = 'Error: Failed to log scan.';
+      });
+  }
+  
 
 
 //For the camera feed. This will be changed later when the back end is added.
@@ -64,23 +160,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     
-    document.getElementById("checkInBtn").addEventListener("click", function () {
-        const decodedText = document.getElementById("qrResult").textContent;
-        updateLogs("Check-in", decodedText, "");
-        alert("Check-in successful!");
-        document.getElementById("scannedInfo").classList.add("d-none");
-    });
+    // document.getElementById("checkInBtn").addEventListener("click", function () {
+    //     const decodedText = document.getElementById("qrResult").textContent;
+    //     updateLogs("Check-in", decodedText, "");
+    //     alert("Check-in successful!");
+    //     document.getElementById("scannedInfo").classList.add("d-none");
+    // });
     
-    document.getElementById("checkOutBtn").addEventListener("click", function () {
-        const decodedText = document.getElementById("qrResult").textContent;
-        const purpose = document.getElementById("purposeInput").value.trim();
-        if (!purpose) {
-            alert("Please enter a valid purpose before checking out.");
-            return;
-        }
-        updateLogs("Check-out", decodedText, purpose);
-        alert("Check-out successful!");
-        document.getElementById("scannedInfo").classList.add("d-none");
-    });
+    // document.getElementById("checkOutBtn").addEventListener("click", function () {
+    //     const decodedText = document.getElementById("qrResult").textContent;
+    //     const purpose = document.getElementById("purposeInput").value.trim();
+    //     if (!purpose) {
+    //         alert("Please enter a valid purpose before checking out.");
+    //         return;
+    //     }
+    //     updateLogs("Check-out", decodedText, purpose);
+    //     alert("Check-out successful!");
+    //     document.getElementById("scannedInfo").classList.add("d-none");
+    // });
 });
-

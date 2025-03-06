@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel || Run Scans</title>
-    <link rel="stylesheet" href="/admin/style/runScan.css">
+
+    <!--added this line -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <link rel="stylesheet" href="../css/runScan.css">
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -29,22 +32,22 @@
             </div>
             <ul class="sidebar-nav">
               <li class="sidebar-item ">
-                <a href="/admin/markup/adminDashboard.html" class="sidebar-link"
+                <a href="../admin-dashboard.html" class="sidebar-link"
                   ><i class="bx bxs-dashboard"></i> <span>Dashboard</span></a
                 >
               </li>
               <li class="sidebar-item">
-                <a href="/admin/markup/manageStudents.html" class="sidebar-link"
+                <a href="manageStudents.html" class="sidebar-link"
                   ><i class="bx bxs-group"></i><span>Manage Students</span></a
                 >
               </li>
               <li class="sidebar-item">
-                <a href="/admin/markup/manageRooms.html" class="sidebar-link"
+                <a href="manageRooms.html" class="sidebar-link"
                   ><i class="bx bxs-door-open"></i> <span>Manage Rooms</span></a
                 >
               </li>
               <li class="sidebar-item">
-                <a href="/admin/markup/runScan.html" class="sidebar-link"
+                <a href="runScan.html" class="sidebar-link"
                   ><i class="bx bx-qr-scan"></i> <span class="active">Run Scans</span></a
                 >
               </li>
@@ -120,13 +123,14 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <label for="studentIdInput" class="form-label">Student ID</label>
-              <input type="text" id="studentIdInput" class="form-control" placeholder="Enter Student ID">
+          
+              <label for="manual-student-id" class="form-label">Enter Student ID: </label>
+              <input type="text" id="manual-student-id" class="form-control" placeholder="Enter Student ID">
 
               <!-- <label for="purposeInput" class="form-label mt-3">Purpose (Required for Check-Out)</label>
               <input type="text" id="purposeInput" class="form-control" placeholder="Enter purpose"> -->
-
-              <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
+              <p id="scan-result"></p> <!-- scan result -->
+              <button type="submit" class="btn btn-primary w-100 mt-3" id="submit-id-btn" onclick="manualScan()">Submit</button>
           </div>
       </div>
   </div>
@@ -143,7 +147,8 @@
                         <div class="card">
                             <div class="card-header bg-primary text-white">Live QR Code Scanner</div>
                             <div class="card-body text-center">
-                                <video id="qrScanner" class="w-100" autoplay></video>
+                                <div id="qr-reader" class="w-100" ></div>
+                                
                                 <p class="mt-2 text-muted">Align the QR code within the frame.</p>
                             </div>
                         </div>
@@ -198,6 +203,6 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"
   ></script>
-    <script src="/admin/script/runScan.js"></script>
+    <script src="../script/runscan.js"></script>
 </body>
 </html>
