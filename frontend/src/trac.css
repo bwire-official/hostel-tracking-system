@@ -32,3 +32,8 @@ body {
     color: #ffffff;
     cursor: pointer;
 }
+
+#bypass-btn a{
+    text-decoration: none;
+    color: #ffffff;
+}
