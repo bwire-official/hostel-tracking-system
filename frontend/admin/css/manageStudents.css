@@ -14,30 +14,6 @@ body{
     font-family: 'Lato', sans-serif;
 }
 
-/* Smooth transition */
-body, .navbar, .card, .container, #sidebar {
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-/* Dark Mode Styles */
-.dark-mode {
-    background-color: #121212 !important;
-    color: white !important;
-}
-
-/* Dark Mode Sidebar */
-.dark-mode #sidebar {
-    background-color: #1e1e1e !important;
-}
-
-/* Sidebar Links in Dark Mode */
-.dark-mode .sidebar-link {
-    color: white !important;
-}
-
-
-
-
 .wrapper{
     display: flex;
 }
@@ -52,7 +28,7 @@ body, .navbar, .card, .container, #sidebar {
     background-color: #f9f9f9;
 }
 
-#sidebar{
+.sidebar{
     width: 90px;
     min-width: 90px;
     background-color: #0b0f19;
@@ -61,11 +37,10 @@ body, .navbar, .card, .container, #sidebar {
     flex-direction: column;
 }
 
-
-#sidebar .active{
+.sidebar .active{
     color: #3b7ddd;
+    /* outline: 2px solid red; */
 }
-
 
 .sidebar-nav {
     list-style: none;
@@ -75,13 +50,13 @@ body, .navbar, .card, .container, #sidebar {
 }
 
 
-#sidebar.expand{
+.sidebar.expand{
     width: 260px;
     min-width: 260px;
 }
 
-#sidebar:not(.expand) .sidebar-logo,
-#sidebar:not(.expand) a.sidebar-link span{
+.sidebar:not(.expand) .sidebar-logo,
+.sidebar:not(.expand) a.sidebar-link span{
     display: none;
     /* outline: 2px solid red; */
 }
@@ -103,8 +78,8 @@ body, .navbar, .card, .container, #sidebar {
     color: #ffffff;
 }
 
-#sidebar.expand.sidebar-logo,
-#sidebar.expand a .sidebar-link span{
+.sidebar.expand.sidebar-logo,
+.sidebar.expand a .sidebar-link span{
     animation: fadeIn .25s ease-out;
 }
 
@@ -167,31 +142,7 @@ a.sidebar-link:hover{
     width: 40px;
 }
 
-.navbar-expand .navbar-nav {
+.navbar-expand .navbar-navv {
     margin-left: auto;
+   
 }
-
-
-main .table{
-    width: 93%;
-}
-
-.content {
-    flex: 1;
-    max-width: 100vw;
-    width: 100vw;
-}
-
-@media only screen and (min-width: 350px) and (max-width: 450px) {
-    .content {
-        max-width: 370px;
-        width: 370px;
-        margin-left: -7%;
-    }
-}
-
-.card {
-    box-shadow: 0 0 .875rem 0 rgba(34, 46, 60, .05);
-    margin-bottom: 24px;
-}
-

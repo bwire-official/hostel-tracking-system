@@ -132,7 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
       "You won't be the best at everything, but you will be the best at something!😉",
       "Take your time with life, learn the lessons heal and grow ❤",
       "If you like, give up. hehe 😐",
-      "We no really send you for here 🤺"
+      "We no really send you for here 🤺",
+      "Don't go for class...sleep tight 😊"
   ];
   document.getElementById("dailyChallenge").textContent = forToday[Math.floor(Math.random() * forToday.length)];
 });
