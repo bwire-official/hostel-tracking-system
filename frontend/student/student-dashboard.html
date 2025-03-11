@@ -101,6 +101,11 @@
                             </span>
                         </div>
                     </div>
+                    <div class="text-center mt-2">
+                        <a id="download-qr-btn" class="btn btn-primary" download="Student_QR_Code.png">
+                            <i class="bx bx-download"></i> Download QR Code
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card shadow-sm">
@@ -131,13 +136,28 @@
     
     <!-- New Row: Two Large Equal Width Cards -->
     <div class="row mb-4">
-                <div class="col-md-6">
-         <div class="card h-100 p-3 shadow">
-                    <h5 class="card-title"> Your Recent Logs</h5>
-                    <div id="logCard" class="overflow-auto" style="max-height: 400px;">
-                        <ul id="logs-list" w-500></ul> <!--added a log list-->
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Your Recent Logs</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">type</th>
+                            <th scope="col">Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logsTableBody">
+                        <!-- Logs will be inserted here dynamically -->
+                    </tbody>
+                    
+                </table>
+            </div>
         </div>
     </div>
     
