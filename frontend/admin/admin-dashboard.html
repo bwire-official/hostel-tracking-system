@@ -136,45 +136,29 @@
                 </div>
                 <!-- Table Element -->
                 <div class="card">
-                  
                     <div class="card-header">
-                        <h5 class="card-title">
-                           Recent Logs
-                        </h5>
+                        <h5 class="card-title">Recent Logs</h5>
                     </div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
+                                    <th scope="col">type</th>
+                                    <th scope="col">Reason</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="studentName">Mary Moses</span></td>
-                                    <td><span class="checkDate">01-02-25</span></td>
-                                    <td><span class="checkTime">02:45PM</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="studentName">Mary Moses</span></td>
-                                    <td><span class="checkDate">01-02-25</span></td>
-                                    <td><span class="checkTime">02:45PM</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="studentName">Mary Moses</span></td>
-                                    <td><span class="checkDate">01-02-25</span></td>
-                                    <td><span class="checkTime">02:45PM</span></td>
-                                </tr>
+                            <tbody id="logsTableBody">
+                                <!-- Logs will be inserted here dynamically -->
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
-            </div>
-        </main>
-      </div>
-    </div>
+                
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -182,6 +166,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./script/adminDashboard.js"></script>
+    <script src="../authentication/adminAuth.js"></script>
   </body>
 </html>
 

@@ -36,6 +36,7 @@ app.use('/api', scanRoutes);
 app.use('/api/student', studentRoutes);
 app.use(express.static("frontend"));
 
+
 // Default route
 app.get('/', (req, res) => {
   res.send('Hostel Tracking System Backend');
