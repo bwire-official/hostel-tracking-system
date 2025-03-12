@@ -36,32 +36,7 @@
       });
 })();
 
-// Fetch and display student check-in/check-out logs
-async function fetchStudentLogs() {
-  try {
-      const response = await fetch('http://localhost:5000/api/student/logs', {
-          headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          },
-      });
-      const logs = await response.json();
-      displayLogs(logs);
-  } catch (error) {
-      console.error('Error fetching logs:', error);
-      alert('Failed to fetch logs. Please try again.');
-  }
-}
 
-function displayLogs(logs) {
-  const logsList = document.getElementById('logs-list');
-  logsList.innerHTML = logs.map(log => `
-      <li>
-          <strong>${log.type}</strong> at ${new Date(log.timestamp).toLocaleString()}
-          ${log.reason ? `<br><em>Reason: ${log.reason}</em>` : ''}
-      </li>
-  `).join('');
-}
-fetchStudentLogs();
 
 // Sidebar toggle functionality
 const hamburger = document.querySelector(".toggle-btn");
@@ -160,76 +135,3 @@ document.getElementById("complaintForm").addEventListener("submit", function(eve
 });
 
 
-
-
-
-
-//version --1--
-
-
-// (function () {
-//   const token = localStorage.getItem('token');
-//   if (!token) {
-//     alert('Please log in to view your QR code.');
-//     window.location.href = '/frontend/login/login.html';
-//     return;
-//   }
-
-//   console.log('Token:', token); // Debugging: Log the token
-
-//   fetch('http://localhost:5000/api/student/qrcode', {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${token}`,
-//     },
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       console.log('QR Code Data:', data); // Debugging: Log the response data
-//       if (data.qrCode) {
-//         document.getElementById('qr-code-image').src = data.qrCode;
-//       } else {
-//         alert('QR code not found.');
-//       }
-//     })
-//     .catch((error) => {
-//       console.error('Error fetching QR code:', error);
-//       alert('Failed to fetch QR code. Please try again.');
-//     });
-// })();
-
-// async function fetchStudentLogs() {
-//   try {
-//     const response = await fetch('http://localhost:5000/api/student/logs', {
-//       headers: {
-//         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-//       },
-//     });
-//     const logs = await response.json();
-//     displayLogs(logs);
-//   } catch (error) {
-//     console.error('Error fetching logs:', error);
-//     alert('Failed to fetch logs. Please try again.');
-//   }
-// }
-
-// function displayLogs(logs) {
-//   const logsList = document.getElementById('logs-list');
-//   logsList.innerHTML = logs.map(log => `
-//     <li>
-//       <strong>${log.type}</strong> at ${new Date(log.timestamp).toLocaleString()}
-//       ${log.reason ? `<br><em>Reason: ${log.reason}</em>` : ''}
-//     </li>
-//   `).join('');
-// }
-
-// // Call the function when the page loads
-// fetchStudentLogs();
-
-// //
