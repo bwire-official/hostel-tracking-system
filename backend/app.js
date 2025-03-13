@@ -5,18 +5,20 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const scanRoutes = require('./routes/scanRoutes');
 const studentRoutes = require('./routes/studentRoutes');
-const adminRoutes = require('./routes/adminRoutes'); // Added admin routes
+const adminRoutes = require('./routes/adminRoutes');
 require('dotenv').config();
 
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: "*", // Temporarily allowing all origins for debugging
-  credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization"
-}));
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 
 // Logging middleware (to log all incoming requests)
 app.use((req, res, next) => {
@@ -31,11 +33,10 @@ connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/admin', adminRoutes); // Added admin routes
+app.use('/api/admin', adminRoutes);
 app.use('/api', scanRoutes);
 app.use('/api/student', studentRoutes);
 app.use(express.static("frontend"));
-
 
 // Default route
 app.get('/', (req, res) => {
@@ -54,8 +55,9 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
+// ✅ Dynamic PORT setup
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
