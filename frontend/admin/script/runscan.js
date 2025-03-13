@@ -1,3 +1,4 @@
+import API_BASE from "./config/config.js";
 const hamburger = document.querySelector(".toggle-btn");
 
 
@@ -25,7 +26,7 @@ function onScanSuccess(studentId) {
 
   // Send studentId and reason to the backend
   
-  fetch('http://localhost:5000/api/scan', {
+  fetch(`${API_BASE}/api/scan`, {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
@@ -83,7 +84,7 @@ function manualScan() {
     const reason = prompt('Enter reason for check-out (if applicable):');
   
     // Send studentId and reason to the backend
-    fetch('http://localhost:5000/api/scan', {
+   fetch(`${API_BASE}/api/scan`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
@@ -105,6 +106,8 @@ function manualScan() {
         document.getElementById('scan-result').innerText = 'Error: Failed to log scan.';
       });
   }
+
+  window.manualScan = manualScan;
   
 
 

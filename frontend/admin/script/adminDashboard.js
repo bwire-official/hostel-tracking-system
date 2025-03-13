@@ -1,3 +1,4 @@
+import API_BASE from "./config/config.js";
 const hamburger = document.querySelector(".toggle-btn");
 const toggler = document.querySelector("#iconic");
 
@@ -54,7 +55,7 @@ async function fetchLogs() {
             return;
         }
 
-        const response = await fetch("http://localhost:5000/api/admin/logs", {
+        const response = await fetch(`${API_BASE}/api/admin/logs`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`

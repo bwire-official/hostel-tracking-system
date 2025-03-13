@@ -1,4 +1,7 @@
+import API_BASE from "../logics/config.js";
 // Ensure the button exists before adding event listener
+
+//const { default: API_BASE } = require("./config");
 
 document.addEventListener("DOMContentLoaded", function () {
     const downloadBtn = document.getElementById("download-qr-btn");
@@ -17,7 +20,7 @@ async function downloadQRCode() {
         }
 
         // Fetch student details & QR code
-        const response = await fetch("http://localhost:5000/api/student/details", {
+        const response = await fetch(`${API_BASE}/api/student/details`, {
             headers: { Authorization: `Bearer ${token}` },
         });
 

@@ -29,8 +29,9 @@ function registerFunction() {
   registerTitle.style.opacity = 1;
 }
 
-// ✅ Updated API Base URL (Using Localhost)
-const API_BASE = "http://localhost:5000";
+// ✅ Updated API Base URL
+import API_BASE from "../config.js";
+
 console.log("✅ Using API base URL:", API_BASE);
 
 // ✅ Login Form Submission with Validation

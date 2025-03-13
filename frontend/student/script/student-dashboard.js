@@ -1,3 +1,5 @@
+import API_BASE from "./logics/config.js";
+
 (function () {
   const token = localStorage.getItem('token');
   if (!token) {
@@ -7,14 +9,17 @@
   }
 
   console.log('Token:', token); // Debugging: Log the token
+  
 
   // Fetch student QR code
-  fetch('http://localhost:5000/api/student/qrcode', {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-      },
+
+  
+  fetch(`${API_BASE}/api/student/qrcode`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   })
       .then((response) => {
           if (!response.ok) {

@@ -1,6 +1,7 @@
+import API_BASE from "./config.js";
 async function fetchStudentLogs() {
     try {
-        const response = await fetch('http://localhost:5000/api/student/logs', {
+        const response = await fetch(`${API_BASE}/api/student/logs`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },

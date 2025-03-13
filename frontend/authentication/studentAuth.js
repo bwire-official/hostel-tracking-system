@@ -1,3 +1,4 @@
+import API_BASE from "../config"; 
 document.addEventListener("DOMContentLoaded", function () {
     const logoutButton = document.querySelector(".sidebar-footer a"); // Ensure this targets the logout button
 
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 // Send logout request
-                const response = await fetch("http://localhost:5000/api/student/logout", {
+                const response = await fetch(`${API_BASE}/api/student/logout`, {
                     method: "POST",
                     headers: { "Authorization": `Bearer ${token}` }
                 });
