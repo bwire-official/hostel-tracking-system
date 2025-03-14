@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (!token) {
                     console.warn("No token found, redirecting to login...");
-                    window.location.href = "/frontend/login/login.html"; // ✅ Fixed path
+                    window.location.href = "../login/login.html"; // ✅ Fixed path
                     return;
                 }
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     console.log("Logout successful");
                     localStorage.removeItem("token");
-                    window.location.href = "/frontend/login/login.html"; // ✅ Fixed path
+                    window.location.href = "../login/login.html"; // ✅ Fixed path
                 } else {
                     const errorResponse = await response.json();
                     console.error("Logout failed:", errorResponse);
